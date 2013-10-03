@@ -1,0 +1,194 @@
+(in-package :stumpwm)
+(load "~/src/stumpwm/head.lisp")
+
+;; variables
+;; startup message
+(setf *startup-message* nil)
+
+;; input & message box
+(setf *message-window-gravity* :center)
+(setf *input-window-gravity* :center)
+(set-fg-color "Lavender")
+(set-bg-color "Black")
+(set-border-color "Black")
+
+;; frames
+(set-frame-outline-width 0)
+(setf *frame-number-map* "etisuranov")
+(setf *new-frame-action* :empty)
+
+;; windows
+(setf *window-border-style* :none)
+(setf *normal-border-width* 0)
+
+;; mode-line
+(setf *mode-line-background-color* "black")
+(setf *mode-line-foreground-color* "Rosy Brown")
+(setf *mode-line-position* :top)
+(setf *screen-mode-line-format* "%g")
+
+;; Startup
+(run-shell-command "xrdb ~/.Xressources")
+(run-shell-command "feh --bg-scale ~/img/wal/stumpwm")
+(run-shell-command "xcompmgr -c &")
+(run-shell-command "conky &")
+(run-shell-command "mpd")
+(grename "O:ouragan")
+(resize-head 0 1920 0 1600 875)
+
+;; maps
+;;  new maps definitions
+(defvar *frames-map* (make-sparse-keymap))
+(defvar *size-map* (make-sparse-keymap))
+(defvar *style-map* (make-sparse-keymap))
+(defvar *ff-map* (make-sparse-keymap))
+
+;; commands definition
+;; raccourcis
+(defcommand inc_opacity () ()
+  (run-shell-command "transset-df -a --inc 0.1"))
+(defcommand dec_opacity () ()
+  (run-shell-command "transset-df -a --dec 0.1"))
+(defcommand run_dmenu () ()
+  (run-shell-command "dmenu_run"))
+(defcommand ncmpcpp_toggle () ()
+  (run-shell-command "ncmpcpp toggle"))
+(defcommand ncmpcpp_next () ()
+  (run-shell-command "ncmpcpp next"))
+(defcommand ncmpcpp_prev () ()
+  (run-shell-command "ncmpcpp prev"))
+(defcommand run_urxvt () ()
+  (run-shell-command "urxvt"))
+(defcommand run_openbox () ()
+  (run-shell-command "newXephyr openbox-session"))
+(defcommand lesssound () ()
+  (run-shell-command "amixer set Master playback 2dB-"))
+(defcommand moresound () ()
+  (run-shell-command "amixer set Master playback 2dB+"))
+(defcommand run_firefox () ()
+  (run-shell-command "firefox --new-window"))
+(defcommand testwal () ()
+  (run-shell-command "feh --bg-scale ~/img/wal/test"))
+(defcommand curwal () ()
+  (run-shell-command "feh --bg-scale ~/img/wal/stumpwm"))
+(defcommand conkhead () ()
+  (resize-head 0 1920 0 1600 875))
+(defcommand usualhead () ()
+  (resize-head 0 1920 0 1600 900))
+
+
+;; (defun rfh (new_window)
+;;   (float-window-move-resize (current-window) :x 2010 :y 70 :width 1400 :height 730))
+;; (add-hook *new-window-hook* 'rfh)
+
+
+;; maps commands
+(defcommand enter-size-map () ()
+  (message "+ size-map")
+  (push-top-map *size-map*))
+(defcommand exit-size-map () ()
+  (message "+ top-map")
+  (pop-top-map))
+(defcommand enter-style-map () ()
+  (message "+ style-map")
+  (push-top-map *style-map*))
+(defcommand exit-style-map () ()
+  (message "+ top-map")
+  (pop-top-map))
+
+;; pseudo maccros
+(defcommand splitvth () ()
+  (hsplit)
+  (move-focus :right)
+  (run_urxvt))
+(defcommand splitvtv () ()
+  (vsplit)
+  (move-focus :down)
+  (run_urxvt))
+
+
+;; Binding definition
+;;  maps bindings
+(define-key *top-map*   (kbd "C-j") *frames-map*)
+(define-key *root-map*  (kbd "o") "enter-size-map")
+(define-key *size-map*  (kbd "q") "exit-size-map")
+(define-key *top-map*   (kbd "C-y") "enter-style-map")
+(define-key *style-map* (kbd "q") "exit-style-map")
+
+;; top movement
+(define-key *top-map* (kbd "C-a") "gnew A:alphabet")
+(define-key *top-map* (kbd "C-u") "gnew U:uchronie")
+(define-key *top-map* (kbd "C-i") "gnew I:it")
+(define-key *top-map* (kbd "C-e") "gnew E:entraves")
+(define-key *top-map* (kbd "C-m") "gnew M:me")
+(define-key *top-map* (kbd "C-s") "gnew S:so")
+(define-key *top-map* (kbd "C-g") "gnew G:gargamel")
+(define-key *top-map* (kbd "C-l") "gnew L:/co")
+(define-key *top-map* (kbd "C-o") "gnew O:ouragan")
+(define-key *top-map* (kbd "C-h") "gnew H:haskell")
+(define-key *top-map* (kbd "C-eacute") "gother")
+(define-key *top-map* (kbd "C-p") "groups")
+
+;; window 
+(define-key *root-map* (kbd "eacute") "other-window")
+(define-key *root-map* (kbd "I") "inc_opacity")
+(define-key *root-map* (kbd "i") "dec_opacity")
+(define-key *root-map* (kbd "F") "fullscreen")
+
+;; frames
+(define-key *root-map* (kbd "N") "hsplit")
+(define-key *root-map* (kbd "R") "vsplit")
+(define-key *root-map* (kbd "u") "remove-split")
+(define-key *root-map* (kbd "d") "kill-window")
+(define-key *root-map* (kbd "t") "move-focus left")
+(define-key *root-map* (kbd "s") "move-focus down")
+(define-key *root-map* (kbd "r") "move-focus up")
+(define-key *root-map* (kbd "n") "move-focus right")
+(define-key *frames-map* (kbd "C-t") "exchange-direction left")
+(define-key *frames-map* (kbd "C-s") "exchange-direction down")
+(define-key *frames-map* (kbd "C-r") "exchange-direction up")
+(define-key *frames-map* (kbd "C-n") "exchange-direction right")
+(define-key *frames-map* (kbd "t") "move-window left")
+(define-key *frames-map* (kbd "s") "move-window down")
+(define-key *frames-map* (kbd "r") "move-window up")
+(define-key *frames-map* (kbd "n") "move-window right")
+(define-key *frames-map* (kbd "A") "gmove A:alphabet")
+(define-key *frames-map* (kbd "U") "gmove U:uchronie")
+(define-key *frames-map* (kbd "I") "gmove I:it")
+(define-key *frames-map* (kbd "E") "gmove E:entraves")
+(define-key *frames-map* (kbd "M") "gmove M:me")
+(define-key *frames-map* (kbd "S") "gmove S:so")
+(define-key *frames-map* (kbd "G") "gmove G:gargamel")
+(define-key *frames-map* (kbd "L") "gmove L:/co")
+(define-key *frames-map* (kbd "O") "gmove O:ouragan")
+(define-key *frames-map* (kbd "H") "gmove H:haskell")
+(define-key *size-map* (kbd "t") "resize -10 0")
+(define-key *size-map* (kbd "s") "resize 0 -10")
+(define-key *size-map* (kbd "r") "resize 0 10")
+(define-key *size-map* (kbd "n") "resize 10 0")
+(define-key *root-map* (kbd "T") "splitvth")
+(define-key *root-map* (kbd "S") "splitvtv")
+
+;; shortcuts
+(define-key *root-map* (kbd "l") "loadrc")
+(define-key *root-map* (kbd "c") "run_urxvt")
+(define-key *root-map* (kbd "X") "run_openbox")
+(define-key *root-map* (kbd "p") "run_dmenu")
+(define-key *root-map* (kbd ",") "run_firefox")
+
+;; style
+(define-key *style-map* (kbd "s") "dec_opacity")
+(define-key *style-map* (kbd "r") "inc_opacity")
+(define-key *style-map* (kbd "t") "conkhead")
+(define-key *style-map* (kbd "n") "usualhead")
+(define-key *style-map* (kbd "m") "testwal")
+(define-key *style-map* (kbd "c") "curwal")
+(define-key *style-map* (kbd "y") "mode-line")
+
+
+;; audio
+(define-key *top-map* (kbd "Pause") "ncmpcpp_toggle")
+(define-key *top-map* (kbd "Home") "ncmpcpp_prev")
+(define-key *top-map* (kbd "End") "ncmpcpp_next")
+(define-key *top-map* (kbd "Page_Up") "moresound")
+(define-key *top-map* (kbd "Page_Down") "lesssound")

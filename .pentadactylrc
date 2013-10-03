@@ -1,0 +1,119 @@
+"hg6927
+
+loadplugins '\.(js|penta)$'
+group user
+set guioptions='n'
+set showtabline='never'
+set insertmode
+set scs=1
+colorscheme lucius
+
+set hintkeys='kauie,àyx.'
+set complete='bookmark'
+set defsearch='yubnub'
+
+map -b t gT
+map -b n gt
+map -b è d
+map -b È D
+map -b S :back<CR>
+map -b R :forward<CR>
+map -b -silent T 5h
+map -b -silent N 5l
+map -b -silent s 9j
+map -b -silent r 9k
+map -b e n
+map -b E N
+map -b é <C-^>
+map -b z :winopen<CR>
+map -b -silent w  :saveas!<CR>
+map -b -silent wd :saveas!<Space>~/dl/
+map -b -silent wi :saveas!<Space>~/img/
+map -b -silent ws :saveas!<Space>~/src/
+map -b -silent wm :saveas!<Space>~/msc/  
+map -b -silent ww :saveas!<Space>~/img/wal/test<CR>
+map -b -silent wt :saveas!<Space>~/img/wal/test<CR>
+map -b -silent wp :saveas!<Space>~/img/pic<CR>
+map -b h /
+map -b Y y
+
+map -b -silent <BS> go
+map -b -silent oo :reload<CR>
+map -b -silent j :tabopen<Space>http://duckduckgo.com/lite<CR>
+map -b -silent l :open<Space>
+map -b -silent d :tabclose<CR>
+map -b -silent co :tabonly<CR>
+map -b -silent b :quicktab<CR>
+map -b -silent i ;i
+map -b -silent I ;I
+map -b y ;y
+map -b b :tabs<CR>
+map -b B :bmarks<CR>;o
+map -b J :jumps<CR>;o
+
+map -b -silent uy :open<Space>yt<CR>
+map -b -silent Uy :open<Space>yt<Space>
+map -b -silent up :open<Space>tpb<CR>
+map -b -silent Up :open<Space>tpb<Space>
+map -b -silent ug :open<Space>gmail<CR>
+map -b -silent ua :open<Space>gfl<Space>archlinux<Space>
+map -b -silent ul :open<Space>lolesports.com<Space>
+map -b -silent ud :open<Space>ddg<Space>
+map -b -silent uW :open<Space>wikifr<Space>
+map -b -silent ub :open<Space>ebay<CR>
+map -b -silent uw :open<Space>wallbase<CR>
+map -b -silent uf :open<Space>fb<CR>
+map -b -silent uj :open<Space>jeuxvideo.com<CR>
+map -b -silent u4 :open<Space>t411.me<CR>
+map -b -silent ut :open<Space>twitter<CR>
+map -b -silent uT :open<Space>twitch.tv/directory<CR>
+map -b -silent uo :open<Space>www.ogaming.tv<CR>
+map -b -silent ul :open<Space>www.lolesports.com<CR>
+map -b -silent u9 :open<Space>www.9gag.com<CR>
+map -b -silent ay :tabopen<Space>yt<CR>
+map -b -silent Ay :tabopen<Space>yt<Space>
+map -b -silent ap :tabopen<Space>tpb<CR>
+map -b -silent Ap :tabopen<Space>tpb<Space>
+map -b -silent ag :tabopen<Space>gmail<CR>
+map -b -silent aa :tabopen<Space>gfl<Space>archlinux<Space>
+map -b -silent al :tabopen<Space>lolesports.com<Space>
+map -b -silent ad :tabopen<Space>ddg<Space>
+map -b -silent aW :tabopen<Space>wikifr<Space>
+map -b -silent ab :tabopen<Space>ebay<CR>
+map -b -silent aw :tabopen<Space>wallbase<CR>
+map -b -silent af :tabopen<Space>fb<CR>
+map -b -silent aj :tabopen<Space>jeuxvideo.com<CR>
+map -b -silent a4 :tabopen<Space>t411.me<CR>
+map -b -silent at :tabopen<Space>twitter<CR>
+map -b -silent aT :tabopen<Space>twitch.tv/directory<CR>
+map -b -silent ao :tabopen<Space>www.ogaming.tv<CR>
+map -b -silent al :tabopen<Space>www.lolesports.com<CR>
+map -b -silent u9 :tabopen<Space>www.9gag.com<CR>
+
+map -b -silent oa fi<CR>
+map -b -silent oc fe<CR>
+map -b -silent od f,<CR>
+map -b -silent om fà<CR>
+map -b -silent on fà<CR>
+map -b -silent ow fau<CR>
+map -b -silent op fea<CR>
+
+
+map -b -silent \" :buffer<Space>1<CR>
+map -b -silent « :buffer<Space>2<CR>
+map -b -silent » :buffer<Space>3<CR>
+map -b -silent ( :buffer<Space>4<CR>
+map -b -silent ) :buffer<Space>5<CR>
+map -b -silent @ :buffer<Space>6<CR>
+map -b -silent + :buffer<Space>7<CR>
+map -b -silent \- :buffer<Space>8<CR>
+map -b -silent / :buffer<Space>9<CR>
+map -b -silent * :buffer<Space>10<CR>
+map -b -silent $ :tablast<CR>
+
+imap -b <A-t> <Left>
+imap -b <A-s> <Down>
+imap -b <A-r> <Up>
+imap -b <A-n> <Right>
+
+" vim: set ft=pentadactyl:

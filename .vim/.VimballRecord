@@ -1,0 +1,1 @@
+RltvNmbr.vba: call delete('/home/moka/.vim/plugin/RltvNmbr.vim')|call delete('/home/moka/.vim/plugin/RltvNmbrPlugin.vim')|call delete('/home/moka/.vim/doc/RltvNmbr.txt')|call delete('/home/moka/.vim/autoload/RltvNmbr.vim')

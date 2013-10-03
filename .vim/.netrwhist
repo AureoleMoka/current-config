@@ -1,0 +1,5 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_1='/home/moka/.pentadactyl'
+let g:netrw_dirhist_2='/home/moka/.oh-my-zsh/plugins/torrent'
+let g:netrw_dirhist_3='/home/moka/.oh-my-zsh'
